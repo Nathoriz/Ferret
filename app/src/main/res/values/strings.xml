@@ -6,4 +6,7 @@
     <string name="valtxt_splash_titulo">FERRET</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="valtxt_listproduct_name">name</string>
+    <string name="valtxt_listproduct_brand">brand</string>
+    <string name="valtxt_listproduct_price">price</string>
 </resources>
