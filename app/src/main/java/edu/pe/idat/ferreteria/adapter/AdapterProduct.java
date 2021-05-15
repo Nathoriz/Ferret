@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import edu.pe.idat.ferreteria.DetailProductActivity;
 import edu.pe.idat.ferreteria.R;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
+import edu.pe.idat.ferreteria.pruebaActivity;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> {
 
@@ -50,7 +51,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDetailProduct = new Intent(context, DetailProductActivity.class);
+                Intent intentDetailProduct = new Intent(context, pruebaActivity.class);
                 intentDetailProduct.putExtra("product", item);
                 context.startActivity(intentDetailProduct);
             }
