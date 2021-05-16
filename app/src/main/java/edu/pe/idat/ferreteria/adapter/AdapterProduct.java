@@ -2,21 +2,27 @@ package edu.pe.idat.ferreteria.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import edu.pe.idat.ferreteria.ProductDetailActivity;
 import edu.pe.idat.ferreteria.R;
+import edu.pe.idat.ferreteria.ShoppingCartFragment;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> {
@@ -27,7 +33,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
      // Nuevo adición
      private ArrayList<ModelProduct> shoppingCartList;
-     // Fin de adición
+
 
     public AdapterProduct(Context context){
         this.context = context;
@@ -36,7 +42,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         shoppingCartList = new ArrayList<>();
         // Fin de adición
     }
-
 
     @NonNull
     @Override
@@ -74,26 +79,30 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             }
         });
 
-        holder.addToCart.setOnClickListener(new View.OnClickListener() {
+        holder.addToCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(holder.addToCart.getText() == "AGREGAR AL CARRITO"){
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(holder.addToCart.isChecked() == true){
                     shoppingCartList.add(item);
-                    holder.addToCart.setText("HOLA");
-                }else if(holder.addToCart.getText() == "ELIMINAR DEL CARRITO"){
+                    mensaje("añadio");
+
+                }else if(holder.addToCart.isChecked() == false){
                     shoppingCartList.remove(item);
-                    holder.addToCart.setText("AGREGAR AL CARRITO");
+                    mensaje("elimino");
                 }
+/*
+                ShoppingCartFragment fragment = new ShoppingCartFragment();
+                Bundle dataProduct = new Bundle();
 
-
-
-
-                /*
-                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
-                intentDetailProduct.putExtra("product", item);
-                context.startActivity(intentDetailProduct);*/
+                dataProduct.putParcelableArrayList("productList",shoppingCartList);
+                //dataProduct.putStringArrayList("productlist",shoppingCartList);
+                fragment.setArguments(dataProduct);
+*/
             }
         });
+
+
+
         // Fin adición
     }
 
@@ -106,18 +115,20 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         TextView name, brand, price;
         ImageView productImage;
         CardView cardView;
-        Button showDetailProduct,addToCart;
+        Button showDetailProduct;
+        CheckBox addToCart;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.txtnombreproducto);
-            brand =  itemView.findViewById(R.id.txtmarcaproducto);
-            price = itemView.findViewById(R.id.txtprecioproducto);
-            productImage = itemView.findViewById(R.id.ivimagenproducto);
-            cardView= itemView.findViewById(R.id.cv);
+            name = itemView.findViewById(R.id.txt_cart_nombreproducto);
+            brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
+            price = itemView.findViewById(R.id.txt_cart_precioproducto);
+            productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
+            //cardView= itemView.findViewById(R.id.cvproduct);
+
             // Nuevo adición
             showDetailProduct = itemView.findViewById(R.id.btnshowdetailproduct);
-            addToCart = itemView.findViewById(R.id.btnaddtoshoppingcart);
+            addToCart = itemView.findViewById(R.id.cbaddtocart);
             // Fin adición
         }
     }
@@ -126,5 +137,15 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         list.clear();
         list.addAll(data);
         notifyDataSetChanged();
+    }
+
+    public ArrayList<ModelProduct> getCartProduct() {
+        return shoppingCartList;
+    }
+
+
+    private void mensaje(String mensaje){
+        Toast.makeText(context,mensaje,
+                Toast.LENGTH_LONG).show();
     }
 }

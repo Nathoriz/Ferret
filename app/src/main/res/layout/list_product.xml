@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cv"
+    android:id="@+id/cvproduct"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
@@ -17,14 +17,24 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/txt_cart_nombreproducto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/valtxt_listproduct_name"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <ImageView
-                android:id="@+id/ivimagenproducto"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:id="@+id/iv_cart_imagenproducto"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -35,34 +45,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/ivimagenproducto"
-                android:layout_toRightOf="@+id/ivimagenproducto"
+                android:layout_toEndOf="@+id/iv_cart_imagenproducto"
+                android:layout_toRightOf="@+id/iv_cart_imagenproducto"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtnombreproducto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/valtxt_listproduct_name"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtmarcaproducto"
+                    android:id="@+id/txt_cart_marcaproducto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/valtxt_listproduct_brand"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -76,52 +77,63 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/txtprecioproducto"
+                        android:id="@+id/txt_cart_precioproducto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:gravity="end"
                         android:text="@string/valtxt_listproduct_price"
                         android:textColor="#4A4A4A"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="start|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+
+                    <CheckBox
+                        android:id="@+id/cbaddtocart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="20dp"
+                        android:minHeight="20dp"
+                        android:text="Añadir al carrito"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnshowdetailproduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Ver"
+                        android:textSize="12sp"
+                        app:backgroundTint="#1B3B6F"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp" />
 
                 </LinearLayout>
 
             </LinearLayout>
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnaddtoshoppingcart"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="AGREGAR AL CARRITO"
-                android:textSize="12sp"
-                app:backgroundTint="#FF0E78A7" />
-
-            <Button
-                android:id="@+id/btnshowdetailproduct"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Ver"
-                android:textSize="12sp"
-                app:backgroundTint="#1B3B6F"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
