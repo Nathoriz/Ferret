@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import edu.pe.idat.ferreteria.databinding.ActivityProductdetailBinding;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
@@ -15,6 +17,9 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private ActivityProductdetailBinding binding;
     int amount;
     double priceproduct;
+
+    ArrayList<ModelProduct> dataList;
+    ModelProduct data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,8 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             binding.txtpriceproduct.setText(String.valueOf(product.getPrecio()));
             binding.ivimageproduct.setImageResource(product.getImagen());
             priceproduct = product.getPrecio();
+            // añadiendo registro de producto dentro del objeto data
+            data = getIntent().getParcelableExtra("product");
         }
 
         amount = Integer.parseInt(binding.txtamount.getText().toString());
@@ -58,6 +65,39 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             mensaje(String.valueOf(amount * priceproduct));
         }else if(v.getId() == binding.btnaddtocart.getId()){
             //FALTA PROGRAMAR
+
+            /*
+            Bundle dataProduct = new Bundle();
+            dataProduct.putSerializable("dataProduct",shoppingCartList);
+            dataProduct.putString("amount", String.valueOf(amount));
+            ShoppingCartFragment fragment = new ShoppingCartFragment();
+            fragment.setArguments(dataProduct);
+            getSupportFragmentManager().beginTransaction().add(R.id.navshoppingcartfrag,fragment);
+            */
+            if(binding.btnaddtocart.getText() == "AÑADIR A LA CESTA"){
+                binding.btnaddtocart.setText("ELIMINAR DEL CARRITO");
+
+                dataList.add(data);
+                Bundle dataProduct = new Bundle();
+                dataProduct.putInt("amount", amount);
+                dataProduct.putSerializable("productList",dataList);
+                ShoppingCartFragment fragment = new ShoppingCartFragment();
+                fragment.setArguments(dataProduct);
+                getSupportFragmentManager().beginTransaction().add(R.id.navshoppingcartfrag,fragment);
+            }else if (binding.btnaddtocart.getText() == "QUITAR DEL CARRITO"){
+                binding.btnaddtocart.setText("AÑADIR AL CARRITO");
+                dataList.remove(data);
+
+
+            }
+
+
+            Bundle dataProduct = new Bundle();
+            dataProduct.putInt("amount", amount);
+            dataProduct.putParcelable("product",data);
+            ShoppingCartFragment fragment = new ShoppingCartFragment();
+            fragment.setArguments(dataProduct);
+            getSupportFragmentManager().beginTransaction().add(R.id.navshoppingcartfrag,fragment);
         }
     }
 

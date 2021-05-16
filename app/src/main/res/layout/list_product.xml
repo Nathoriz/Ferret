@@ -94,34 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnaddtoshoppingcart"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="AGREGAR AL CARRITO"
-                android:textSize="12sp"
-                app:backgroundTint="#FF0E78A7" />
-
-            <Button
-                android:id="@+id/btnshowdetailproduct"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Ver"
-                android:textSize="12sp"
-                app:backgroundTint="#1B3B6F"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
