@@ -8,28 +8,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.pe.idat.ferreteria.databinding.FragmentShoppingCartBinding;
+
 
 public class ShoppingCartFragment extends Fragment {
 
+    private FragmentShoppingCartBinding binding;
 
     public ShoppingCartFragment() {
-
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_shopping_cart, container, false);
+        binding = FragmentShoppingCartBinding.inflate(inflater,container,false);
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

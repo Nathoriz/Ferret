@@ -16,6 +16,8 @@ public class ProductFragment extends Fragment {
 
     private FragmentProductBinding binding;
 
+    ArrayList<ModelProduct> shoppingCart;
+
     public ProductFragment() {
         // Required empty public constructor
     }

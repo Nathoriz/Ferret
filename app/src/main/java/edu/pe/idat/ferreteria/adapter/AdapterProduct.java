@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,10 +25,16 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
      private Context context;
      private ArrayList<ModelProduct> list;
 
+     // Nuevo adición
+     private ArrayList<ModelProduct> shoppingCartList;
+     // Fin de adición
 
     public AdapterProduct(Context context){
         this.context = context;
         list = new ArrayList<>();
+        // Nuevo adición
+        shoppingCartList = new ArrayList<>();
+        // Fin de adición
     }
 
 
@@ -46,7 +53,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.brand.setText(item.getMarca());
         holder.price.setText(String.valueOf(item.getPrecio()));
         holder.productImage.setImageResource(item.getImagen());
-
+        /*
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +62,39 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
                 context.startActivity(intentDetailProduct);
             }
         });
+        */
+
+        // Nuevo adición
+        holder.showDetailProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
+                intentDetailProduct.putExtra("product", item);
+                context.startActivity(intentDetailProduct);
+            }
+        });
+
+        holder.addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.addToCart.getText() == "AGREGAR AL CARRITO"){
+                    shoppingCartList.add(item);
+                    holder.addToCart.setText("HOLA");
+                }else if(holder.addToCart.getText() == "ELIMINAR DEL CARRITO"){
+                    shoppingCartList.remove(item);
+                    holder.addToCart.setText("AGREGAR AL CARRITO");
+                }
+
+
+
+
+                /*
+                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
+                intentDetailProduct.putExtra("product", item);
+                context.startActivity(intentDetailProduct);*/
+            }
+        });
+        // Fin adición
     }
 
     @Override
@@ -66,6 +106,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         TextView name, brand, price;
         ImageView productImage;
         CardView cardView;
+        Button showDetailProduct,addToCart;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +115,10 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             price = itemView.findViewById(R.id.txtprecioproducto);
             productImage = itemView.findViewById(R.id.ivimagenproducto);
             cardView= itemView.findViewById(R.id.cv);
+            // Nuevo adición
+            showDetailProduct = itemView.findViewById(R.id.btnshowdetailproduct);
+            addToCart = itemView.findViewById(R.id.btnaddtoshoppingcart);
+            // Fin adición
         }
     }
 

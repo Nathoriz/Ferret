@@ -57,7 +57,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         }else if(v.getId() == binding.btnbuy.getId()){
             mensaje(String.valueOf(amount * priceproduct));
         }else if(v.getId() == binding.btnaddtocart.getId()){
-
+            //FALTA PROGRAMAR
         }
     }
 
