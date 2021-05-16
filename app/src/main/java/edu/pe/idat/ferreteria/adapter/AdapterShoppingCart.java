@@ -1,21 +1,25 @@
 package edu.pe.idat.ferreteria.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import edu.pe.idat.ferreteria.ProductDetailActivity;
 import edu.pe.idat.ferreteria.R;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
@@ -23,9 +27,25 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
     private Context context;
     private ArrayList<ModelProduct> list;
 
+    //private OnItemClickListener mListener;
+    //public ArrayList<ModelProduct> data;
+
     public AdapterShoppingCart(Context context){
         this.context = context;
         list = new ArrayList<>();
+    }
+
+    /*
+    public interface OnItemClickListener extends View.OnClickListener {
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(View.OnClickListener listener) { mListener = (OnItemClickListener) listener; }
+*/
+
+    public void removeItem(@NonNull Object object) {
+        list.remove(object);
+        notifyDataSetChanged();
     }
 
 
@@ -49,6 +69,7 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
             @Override
             public void onClick(View view) {
                 list.remove(item);
+                removeItem(holder.itemView);
                 mensaje("elimino");
             }
         });
@@ -56,7 +77,10 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
         holder.show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mensaje("WIIIII");
+                //Falta crear una nueva actividad o modalgit sta
+                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
+                intentDetailProduct.putExtra("product", item);
+                context.startActivity(intentDetailProduct);
             }
         });
 
@@ -67,6 +91,37 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
         return list.size();
     }
 
+/*
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView name, brand, price;
+        ImageView productImage;
+        Button show, delete;
+
+        public ViewHolder(@NonNull @NotNull View itemView, final OnItemClickListener listener) {
+            super(itemView);
+            name = itemView.findViewById(R.id.txt_cart_nombreproducto);
+            brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
+            price = itemView.findViewById(R.id.txt_cart_precioproducto);
+            productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
+            show = itemView.findViewById(R.id.btnshow);
+            delete =   itemView.findViewById(R.id.btndelete);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onDeleteClick(position);
+                        }
+
+                    }
+                }
+            });
+
+        }
+    }
+  */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, brand, price;
         ImageView productImage;
@@ -74,14 +129,19 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
+            View item;
+            item = itemView;
             name = itemView.findViewById(R.id.txt_cart_nombreproducto);
             brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
             price = itemView.findViewById(R.id.txt_cart_precioproducto);
             productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            show = itemView.findViewById(R.id.btndelete);
+            show = itemView.findViewById(R.id.btnshow);
             delete =   itemView.findViewById(R.id.btndelete);
+
         }
     }
+
+
 
     public void addCartProduct(ArrayList<ModelProduct> data) {
         list.clear();

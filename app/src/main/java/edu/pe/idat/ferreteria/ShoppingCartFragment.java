@@ -69,6 +69,21 @@ public class ShoppingCartFragment extends Fragment {
         AdapterShoppingCart adapter = new AdapterShoppingCart(getContext());
         binding.rvcartproducts.setAdapter(adapter);
 
+
+
+        /*adapter.setOnItemClickListener(new AdapterShoppingCart.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                adapter.notifyItemRemoved(position);
+            }
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        */
+
         return binding.getRoot();
     }
 
@@ -77,4 +92,6 @@ public class ShoppingCartFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }
