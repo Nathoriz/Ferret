@@ -37,7 +37,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         binding.btnincrease.setOnClickListener(this);
         binding.btndecrease.setOnClickListener(this);
         binding.btnbuy.setOnClickListener(this);
-        binding.btnaddtocart.setOnClickListener(this);
     }
 
     @Override
@@ -47,17 +46,17 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         }else if(v.getId() == binding.btnincrease.getId()){
             amount = amount+1;
             binding.txtamount.setText(String.valueOf(amount));
+            binding.txttotal.setText(String.valueOf(amount * priceproduct).trim());
         }else if(v.getId() == binding.btndecrease.getId()){
             if(amount <= 1){
                 mensaje("Se requiere un minimo de un peoducto para realizar la compra");
             }else{
                 amount = amount - 1;
                 binding.txtamount.setText(String.valueOf(amount));
+                binding.txttotal.setText(String.valueOf(amount * priceproduct).trim());
             }
         }else if(v.getId() == binding.btnbuy.getId()){
-            mensaje(String.valueOf(amount * priceproduct));
-        }else if(v.getId() == binding.btnaddtocart.getId()){
-            //FALTA PROGRAMAR
+            mensaje("Compra realizada :P");
         }
     }
 

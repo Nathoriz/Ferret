@@ -109,7 +109,7 @@
                         android:minWidth="20dp"
                         android:minHeight="20dp"
                         android:text="Añadir al carrito"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout

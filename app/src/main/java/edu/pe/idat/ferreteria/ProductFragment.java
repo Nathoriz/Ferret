@@ -1,10 +1,13 @@
 package edu.pe.idat.ferreteria;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,40 +39,28 @@ public class ProductFragment extends Fragment {
         adapter.addProduct(listOfProducts());
 
         binding.btncarro.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
                 shoppingCart = adapter.getCartProduct();
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("data",shoppingCart);
                 getParentFragmentManager().setFragmentResult("key", bundle);
+
+                /*
+                Fragment fragment = new ShoppingCartFragment();
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.navshoppingcartfrag,fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                */
             }
         });
 
         return binding.getRoot();
     }
-
-
-/*
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
-        super.onViewCreated(view,saveInstanceState);
-        binding.btncarro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shoppingCart = adapter.getCartProduct();
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("data",shoppingCart);
-                getParentFragmentManager().setFragmentResult("key", bundle);
-            }
-        });
-    }
-
-*/
-
-
-
-
 
     private ArrayList<ModelProduct> listOfProducts() {
         ArrayList<ModelProduct> product = new ArrayList<>();

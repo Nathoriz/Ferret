@@ -27,27 +27,15 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
     private Context context;
     private ArrayList<ModelProduct> list;
 
-    //private OnItemClickListener mListener;
-    //public ArrayList<ModelProduct> data;
-
     public AdapterShoppingCart(Context context){
         this.context = context;
         list = new ArrayList<>();
     }
 
-    /*
-    public interface OnItemClickListener extends View.OnClickListener {
-        void onDeleteClick(int position);
-    }
-
-    public void setOnItemClickListener(View.OnClickListener listener) { mListener = (OnItemClickListener) listener; }
-*/
-
     public void removeItem(@NonNull Object object) {
         list.remove(object);
         notifyDataSetChanged();
     }
-
 
     @NonNull
     @NotNull
@@ -91,37 +79,6 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
         return list.size();
     }
 
-/*
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, brand, price;
-        ImageView productImage;
-        Button show, delete;
-
-        public ViewHolder(@NonNull @NotNull View itemView, final OnItemClickListener listener) {
-            super(itemView);
-            name = itemView.findViewById(R.id.txt_cart_nombreproducto);
-            brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
-            price = itemView.findViewById(R.id.txt_cart_precioproducto);
-            productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            show = itemView.findViewById(R.id.btnshow);
-            delete =   itemView.findViewById(R.id.btndelete);
-
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onDeleteClick(position);
-                        }
-
-                    }
-                }
-            });
-
-        }
-    }
-  */
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, brand, price;
         ImageView productImage;
@@ -129,8 +86,6 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            View item;
-            item = itemView;
             name = itemView.findViewById(R.id.txt_cart_nombreproducto);
             brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
             price = itemView.findViewById(R.id.txt_cart_precioproducto);
@@ -140,8 +95,6 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
 
         }
     }
-
-
 
     public void addCartProduct(ArrayList<ModelProduct> data) {
         list.clear();

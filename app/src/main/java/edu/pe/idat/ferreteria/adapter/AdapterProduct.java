@@ -26,21 +26,14 @@ import edu.pe.idat.ferreteria.ShoppingCartFragment;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> {
-
-
      private Context context;
      private ArrayList<ModelProduct> list;
-
-     // Nuevo adición
      private ArrayList<ModelProduct> shoppingCartList;
-
 
     public AdapterProduct(Context context){
         this.context = context;
         list = new ArrayList<>();
-        // Nuevo adición
         shoppingCartList = new ArrayList<>();
-        // Fin de adición
     }
 
     @NonNull
@@ -58,18 +51,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.brand.setText(item.getMarca());
         holder.price.setText(String.valueOf(item.getPrecio()));
         holder.productImage.setImageResource(item.getImagen());
-        /*
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
-                intentDetailProduct.putExtra("product", item);
-                context.startActivity(intentDetailProduct);
-            }
-        });
-        */
 
-        // Nuevo adición
         holder.showDetailProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,20 +72,8 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
                     shoppingCartList.remove(item);
                     mensaje("elimino");
                 }
-/*
-                ShoppingCartFragment fragment = new ShoppingCartFragment();
-                Bundle dataProduct = new Bundle();
-
-                dataProduct.putParcelableArrayList("productList",shoppingCartList);
-                //dataProduct.putStringArrayList("productlist",shoppingCartList);
-                fragment.setArguments(dataProduct);
-*/
             }
         });
-
-
-
-        // Fin adición
     }
 
     @Override
@@ -114,7 +84,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, brand, price;
         ImageView productImage;
-        CardView cardView;
         Button showDetailProduct;
         CheckBox addToCart;
 
@@ -124,12 +93,8 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
             price = itemView.findViewById(R.id.txt_cart_precioproducto);
             productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            //cardView= itemView.findViewById(R.id.cvproduct);
-
-            // Nuevo adición
             showDetailProduct = itemView.findViewById(R.id.btnshowdetailproduct);
             addToCart = itemView.findViewById(R.id.cbaddtocart);
-            // Fin adición
         }
     }
 
@@ -142,7 +107,6 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     public ArrayList<ModelProduct> getCartProduct() {
         return shoppingCartList;
     }
-
 
     private void mensaje(String mensaje){
         Toast.makeText(context,mensaje,
