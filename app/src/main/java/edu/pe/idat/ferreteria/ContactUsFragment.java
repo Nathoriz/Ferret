@@ -31,16 +31,14 @@ public class ContactUsFragment extends Fragment {
 
             public void onClick(View view) {
                 if (Validacion()){
-                    mostrarAlerta("registro lleno",
+                    mostrarAlerta("Registro",
                             Envio().getSexo()+" "+Envio().getNombre()+"\n"+
                                     "su mensaje "+Envio().getAsunto()+" pon el siguiente texto: \n "+
-                                    Envio().getDescripcion()+"se envio correctamente.\n"+"estaremos comunicandonos con usted mediante " +
+                                    Envio().getDescripcion()+"se envio correctamente.\n"+"en breve nos comunicaremos con usted mediante" +
                                     Envio().getCorreo()+" o el siguente numero " +Envio().getTelefono()+"\n"+
-                                    "Gracias por su contactarnos.");
+                                    "Gracias por contactarnos.");
                     limpiar();
                 }
-
-
             }
         });
         return binding.getRoot();
