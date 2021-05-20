@@ -28,13 +28,13 @@ public class ContactUsFragment extends Fragment {
 
             public void onClick(View view) {
                 if (Validacion()){
-                    mostrarAlerta("Registro",
+                    mostrarAlerta("Envío Exitoso",
                             Envio().getSexo()+" "+Envio().getNombre()+"\n"+
                                     "Su mensaje "+Envio().getAsunto()+" con el siguiente texto: \n "+
-                                    Envio().getDescripcion()+" se envio correctamente.\n"+
-                                    "En breve nos comunicaremos con usted mediante" +
-                                    Envio().getCorreo()+" o el siguente numero " +Envio().getTelefono()+"\n"+
-                                    "Gracias por contactarnos.");
+                                    Envio().getDescripcion()+"\nSe envió correctamente.\n"+
+                                    "En breve nos comunicaremos con usted mediante su correo " +
+                                    Envio().getCorreo()+" o el siguiente número " +Envio().getTelefono()+"\n"+
+                                    "\n Gracias por contactarnos.");
                     limpiar();
                 }
             }
