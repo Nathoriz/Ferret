@@ -1,5 +1,6 @@
 package edu.pe.idat.ferreteria;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -62,19 +63,25 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
             binding.txttotal.setText(String.valueOf(amount * priceproduct).trim());
         }else if(v.getId() == binding.btndecrease.getId()){
             if(amount <= 1){
-                mensaje("Se requiere un minimo de un peoducto para realizar la compra");
+                mostrarAlerta("Advertencia!!!","Se requiere un producto como mínimo para realizar la compra");
             }else{
                 amount = amount - 1;
                 binding.txtamount.setText(String.valueOf(amount));
                 binding.txttotal.setText(String.valueOf(amount * priceproduct).trim());
             }
         }else if(v.getId() == binding.btnbuy.getId()){
-            mensaje("Compra realizada :P");
+            mostrarAlerta("Compra Exitosa",
+                    "Gracias por su compra" + "\n" +
+                    "          :)         " + "\n");
         }
     }
 
-    private void mensaje(String mensaje){
-        Toast.makeText(getActivity(),mensaje,
-                Toast.LENGTH_LONG).show();
+    public void mostrarAlerta(String titulo, String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(mensaje)
+                .setTitle(titulo);
+
+        AlertDialog alert =builder.create();
+        alert.show();
     }
 }
