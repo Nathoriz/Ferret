@@ -20,6 +20,8 @@ import edu.pe.idat.ferreteria.adapter.AdapterShoppingCart;
 import edu.pe.idat.ferreteria.databinding.FragmentShoppingCartBinding;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
+import static androidx.navigation.Navigation.findNavController;
+
 
 public class ShoppingCartFragment extends Fragment {
 
@@ -50,7 +52,7 @@ public class ShoppingCartFragment extends Fragment {
 
         binding = FragmentShoppingCartBinding.inflate(inflater,container,false);
 
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+        getParentFragmentManager().setFragmentResultListener("cartdata", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull @NotNull String requestKey, @NonNull @NotNull Bundle result) {
                 ArrayList<ModelProduct> list = result.getParcelableArrayList("data");
@@ -58,9 +60,19 @@ public class ShoppingCartFragment extends Fragment {
                 AdapterShoppingCart adapter = new AdapterShoppingCart(getContext());
                 adapter.addCartProduct(list);
                 binding.rvcartproducts.setAdapter(adapter);
+
+                adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("data",list.get(binding.rvcartproducts.getChildAdapterPosition(view)));
+                        getParentFragmentManager().setFragmentResult("productdata", bundle);
+                        findNavController(view).navigate(R.id.navproductdetailfrag);
+                    }
+                });
+
             }
         });
-
 
         /*
         Bundle bundle = getArguments();

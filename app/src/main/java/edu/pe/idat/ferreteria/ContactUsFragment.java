@@ -14,10 +14,13 @@ import java.util.regex.Pattern;
 import edu.pe.idat.ferreteria.databinding.FragmentContactUsBinding;
 import edu.pe.idat.ferreteria.modelo.ModelContactUs;
 
+
 public class ContactUsFragment extends Fragment {
 
     private FragmentContactUsBinding binding;
     private ModelContactUs enviodata;
+
+
 
     public ContactUsFragment() {
 
@@ -33,8 +36,9 @@ public class ContactUsFragment extends Fragment {
                 if (Validacion()){
                     mostrarAlerta("Registro",
                             Envio().getSexo()+" "+Envio().getNombre()+"\n"+
-                                    "su mensaje "+Envio().getAsunto()+" pon el siguiente texto: \n "+
-                                    Envio().getDescripcion()+"se envio correctamente.\n"+"en breve nos comunicaremos con usted mediante" +
+                                    "Su mensaje "+Envio().getAsunto()+" con el siguiente texto: \n "+
+                                    Envio().getDescripcion()+" se envio correctamente.\n"+
+                                    "En breve nos comunicaremos con usted mediante" +
                                     Envio().getCorreo()+" o el siguente numero " +Envio().getTelefono()+"\n"+
                                     "Gracias por contactarnos.");
                     limpiar();
@@ -86,9 +90,10 @@ public class ContactUsFragment extends Fragment {
         return enviodata;
 
     }
-       public void limpiar(){
-        binding.etasunto.setText("");
-        binding.etnombre.setText("");
+
+    public void limpiar(){
+            binding.etasunto.setText("");
+            binding.etnombre.setText("");
            binding.etcorreo.setText("");
            binding.edtmensaje.setText("");
            binding.ettelefono.setText("");
@@ -98,6 +103,7 @@ public class ContactUsFragment extends Fragment {
 
 
        }
+
     public boolean Validacion(){
         String msj = "";
         boolean respuesta = true;
@@ -142,6 +148,7 @@ public class ContactUsFragment extends Fragment {
         return respuesta;
 
     }
+
     @Override
     public void onDestroyView(){
         super.onDestroyView();

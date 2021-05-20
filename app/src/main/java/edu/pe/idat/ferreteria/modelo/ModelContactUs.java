@@ -28,31 +28,6 @@ public class ModelContactUs implements Parcelable {
         this.empresa = empresa;
     }
 
-    protected ModelContactUs(Parcel in) {
-
-        asunto = in.readString();
-        nombre = in.readString();
-        telefono = in.readInt();
-        correo = in.readString();
-        sexo = in.readString();
-        descripcion = in.readString();
-        empresa = in.readInt();
-    }
-
-    public static final Creator<ModelContactUs> CREATOR = new Creator<ModelContactUs>() {
-        @Override
-        public ModelContactUs createFromParcel(Parcel in) {
-            return new ModelContactUs(in);
-        }
-
-        @Override
-        public ModelContactUs[] newArray(int size) {
-            return new ModelContactUs[size];
-        }
-    };
-
-
-
     public String getAsunto() {
         return asunto;
     }
@@ -109,6 +84,28 @@ public class ModelContactUs implements Parcelable {
         this.empresa = empresa;
     }
 
+    protected ModelContactUs(Parcel in) {
+        asunto = in.readString();
+        nombre = in.readString();
+        telefono = in.readInt();
+        correo = in.readString();
+        sexo = in.readString();
+        descripcion = in.readString();
+        empresa = in.readInt();
+    }
+
+    public static final Creator<ModelContactUs> CREATOR = new Creator<ModelContactUs>() {
+        @Override
+        public ModelContactUs createFromParcel(Parcel in) {
+            return new ModelContactUs(in);
+        }
+
+        @Override
+        public ModelContactUs[] newArray(int size) {
+            return new ModelContactUs[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -116,7 +113,6 @@ public class ModelContactUs implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
         parcel.writeString(asunto);
         parcel.writeString(nombre);
         parcel.writeInt(telefono);

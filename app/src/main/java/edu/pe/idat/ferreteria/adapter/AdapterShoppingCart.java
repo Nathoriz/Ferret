@@ -19,13 +19,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import edu.pe.idat.ferreteria.ProductDetailActivity;
 import edu.pe.idat.ferreteria.R;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
-public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCart.ViewHolder> {
+public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCart.ViewHolder> implements View.OnClickListener {
     private Context context;
     private ArrayList<ModelProduct> list;
+
+    private View.OnClickListener listener;
+
+
 
     public AdapterShoppingCart(Context context){
         this.context = context;
@@ -42,6 +45,7 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_cartproduct,parent,false);
+        view.setOnClickListener(this);
         return new AdapterShoppingCart.ViewHolder(view);
     }
 
@@ -62,21 +66,37 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
             }
         });
 
+        /*
         holder.show.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                //Falta crear una nueva actividad o modalgit sta
+
                 Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
                 intentDetailProduct.putExtra("product", item);
                 context.startActivity(intentDetailProduct);
+
             }
         });
+        */
 
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener!= null){
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -90,7 +110,7 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
             brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
             price = itemView.findViewById(R.id.txt_cart_precioproducto);
             productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            show = itemView.findViewById(R.id.btnshow);
+            //show = itemView.findViewById(R.id.btnshow);
             delete =   itemView.findViewById(R.id.btndelete);
 
         }

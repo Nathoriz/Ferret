@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 import edu.pe.idat.ferreteria.adapter.AdapterProduct;
 import edu.pe.idat.ferreteria.databinding.FragmentProductBinding;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
+
+import static androidx.navigation.Navigation.findNavController;
 
 public class ProductFragment extends Fragment {
 
@@ -38,14 +42,15 @@ public class ProductFragment extends Fragment {
         binding.rvlistproducts.setAdapter(adapter);
         adapter.addProduct(listOfProducts());
 
-        binding.btncarro.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
+
+        adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shoppingCart = adapter.getCartProduct();
                 Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("data",shoppingCart);
-                getParentFragmentManager().setFragmentResult("key", bundle);
+                bundle.putParcelable("data",listOfProducts().get(binding.rvlistproducts.getChildAdapterPosition(view)));
+                getParentFragmentManager().setFragmentResult("productdata", bundle);
+
+                findNavController(view).navigate(R.id.navproductdetailfrag);
 
                 /*
                 Fragment fragment = new ShoppingCartFragment();
@@ -56,6 +61,21 @@ public class ProductFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 */
+
+            }
+        });
+
+        binding.btncarro.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View view) {
+                shoppingCart = adapter.getCartProduct();
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("data",shoppingCart);
+                getParentFragmentManager().setFragmentResult("cartdata", bundle);
+
+
+
             }
         });
 
