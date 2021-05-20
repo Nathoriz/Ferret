@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FERRETERIA">
-        <activity android:name=".ProductDetailActivity" />
         <activity android:name=".DetailProductActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

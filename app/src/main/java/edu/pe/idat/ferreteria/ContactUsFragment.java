@@ -6,25 +6,19 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
-
 import java.util.regex.Pattern;
-
 import edu.pe.idat.ferreteria.databinding.FragmentContactUsBinding;
 import edu.pe.idat.ferreteria.modelo.ModelContactUs;
-
 
 public class ContactUsFragment extends Fragment {
 
     private FragmentContactUsBinding binding;
     private ModelContactUs enviodata;
 
-
-
     public ContactUsFragment() {
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +72,7 @@ public class ContactUsFragment extends Fragment {
                 }else {
                     empresa = 0;
                 }
+
                 enviodata.setAsunto(asunto);
                 enviodata.setNombre(nombre);
                 enviodata.setCorreo(correo);
@@ -86,23 +81,19 @@ public class ContactUsFragment extends Fragment {
                 enviodata.setTelefono(telefono);
                 enviodata.setEmpresa(empresa);
 
-
         return enviodata;
-
     }
 
     public void limpiar(){
-            binding.etasunto.setText("");
-            binding.etnombre.setText("");
-           binding.etcorreo.setText("");
-           binding.edtmensaje.setText("");
-           binding.ettelefono.setText("");
-           binding.rdbsr.setSelected(false);
-           binding.rdbsra.setSelected(false);
-           binding.cbempresa.setSelected(false);
-
-
-       }
+        binding.etasunto.setText("");
+        binding.etnombre.setText("");
+        binding.etcorreo.setText("");
+        binding.edtmensaje.setText("");
+        binding.ettelefono.setText("");
+        binding.rdbsr.setSelected(false);
+        binding.rdbsra.setSelected(false);
+        binding.cbempresa.setSelected(false);
+    }
 
     public boolean Validacion(){
         String msj = "";
@@ -144,9 +135,7 @@ public class ContactUsFragment extends Fragment {
         } else {
            respuesta = true;
         }
-
         return respuesta;
-
     }
 
     @Override

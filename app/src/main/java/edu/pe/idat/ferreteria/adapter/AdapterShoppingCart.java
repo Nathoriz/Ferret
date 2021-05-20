@@ -1,34 +1,24 @@
 package edu.pe.idat.ferreteria.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-
 import edu.pe.idat.ferreteria.R;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
 public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCart.ViewHolder> implements View.OnClickListener {
     private Context context;
     private ArrayList<ModelProduct> list;
-
     private View.OnClickListener listener;
-
-
 
     public AdapterShoppingCart(Context context){
         this.context = context;
@@ -66,20 +56,6 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
             }
         });
 
-        /*
-        holder.show.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                Intent intentDetailProduct = new Intent(context, ProductDetailActivity.class);
-                intentDetailProduct.putExtra("product", item);
-                context.startActivity(intentDetailProduct);
-
-            }
-        });
-        */
-
     }
 
     @Override
@@ -102,7 +78,7 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, brand, price;
         ImageView productImage;
-        Button show, delete;
+        Button delete;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -110,7 +86,6 @@ public class AdapterShoppingCart extends RecyclerView.Adapter<AdapterShoppingCar
             brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
             price = itemView.findViewById(R.id.txt_cart_precioproducto);
             productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            //show = itemView.findViewById(R.id.btnshow);
             delete =   itemView.findViewById(R.id.btndelete);
 
         }

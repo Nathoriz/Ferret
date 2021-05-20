@@ -2,15 +2,8 @@ package edu.pe.idat.ferreteria;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +22,6 @@ public class ProductFragment extends Fragment {
     ArrayList<ModelProduct> shoppingCart;
 
     public ProductFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -42,26 +34,13 @@ public class ProductFragment extends Fragment {
         binding.rvlistproducts.setAdapter(adapter);
         adapter.addProduct(listOfProducts());
 
-
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("data",listOfProducts().get(binding.rvlistproducts.getChildAdapterPosition(view)));
                 getParentFragmentManager().setFragmentResult("productdata", bundle);
-
                 findNavController(view).navigate(R.id.navproductdetailfrag);
-
-                /*
-                Fragment fragment = new ShoppingCartFragment();
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.navshoppingcartfrag,fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                */
-
             }
         });
 
@@ -73,9 +52,6 @@ public class ProductFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("data",shoppingCart);
                 getParentFragmentManager().setFragmentResult("cartdata", bundle);
-
-
-
             }
         });
 

@@ -1,27 +1,20 @@
 package edu.pe.idat.ferreteria;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-
 import edu.pe.idat.ferreteria.adapter.AdapterShoppingCart;
 import edu.pe.idat.ferreteria.databinding.FragmentShoppingCartBinding;
 import edu.pe.idat.ferreteria.modelo.ModelProduct;
-
 import static androidx.navigation.Navigation.findNavController;
-
 
 public class ShoppingCartFragment extends Fragment {
 
@@ -35,16 +28,6 @@ public class ShoppingCartFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            // No hay datos, manejar excepción
-            return;
-        }
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,20 +57,6 @@ public class ShoppingCartFragment extends Fragment {
             }
         });
 
-        /*
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            // No hay datos, manejar excepción
-            return null;
-        }
-        ArrayList<ModelProduct> list = bundle.getParcelableArrayList("data");
-        binding.rvcartproducts.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterShoppingCart adapter = new AdapterShoppingCart(getContext());
-        adapter.addCartProduct(list);
-        binding.rvcartproducts.setAdapter(adapter);
-*/
-
-
         return binding.getRoot();
     }
 
@@ -96,6 +65,5 @@ public class ShoppingCartFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }
