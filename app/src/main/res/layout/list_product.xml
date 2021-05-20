@@ -17,18 +17,9 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_cart_nombreproducto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/valtxt_listproduct_name"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:layout_marginTop="10dp">
 
             <ImageView
@@ -45,7 +36,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
@@ -54,11 +45,21 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_cart_nombreproducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/valtxt_listproduct_name"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/txt_cart_marcaproducto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/valtxt_listproduct_brand"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                         android:gravity="end"
                         android:text="S/"
                         android:textColor="#040404"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/txt_cart_precioproducto"
@@ -84,7 +85,7 @@
                         android:gravity="end"
                         android:text="@string/valtxt_listproduct_price"
                         android:textColor="#4A4A4A"
-                        android:textSize="14sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -111,7 +112,6 @@
                         android:text="Añadir al carrito"
                         android:textSize="10sp" />
                 </LinearLayout>
-
 
 
             </LinearLayout>
