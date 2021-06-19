@@ -8,28 +8,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="412dp"
+        android:layout_height="631dp"
         android:orientation="vertical"
         android:padding="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:text="Contactanos"
-            android:textColor="#0E0E0E"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center|start"
-                    android:text=" Asunto:"
+                    android:text="Nombre:"
                     android:textColor="#050505"
                     android:textSize="16sp" />
 
@@ -58,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center|start"
-                    android:text=" Nombre:"
+                    android:text="Apellido:"
                     android:textColor="#000000" />
 
                 <TextView
@@ -67,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center|start"
-                    android:text=" Telefono:"
+                    android:text="Contraseña:"
                     android:textColor="#000000" />
 
                 <TextView
@@ -77,7 +66,15 @@
                     android:layout_weight="1"
                     android:gravity="center|start"
                     android:text=" Correo:"
-                    android:textColor="#000000" />
+                    android:textColor="#050505" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dirección"
+                    android:textColor="#131313" />
 
             </LinearLayout>
 
@@ -92,10 +89,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="8dp"
-                    android:drawableLeft="@drawable/ic_baseline_content_paste_24"
+                    android:drawableStart="@drawable/ic_baseline_supervised_user_circle_24"
                     android:ems="10"
                     android:gravity="center_horizontal"
-                    android:hint="Cooperación"
+                    android:hint="Melissa"
                     android:inputType="textPersonName"
                     android:textSize="14sp" />
 
@@ -107,22 +104,20 @@
                     android:drawableLeft="@drawable/ic_baseline_person_24"
                     android:ems="10"
                     android:gravity="center_horizontal"
-                    android:hint="Melissa Ortiz"
+                    android:hint="   Ortiz"
                     android:inputType="textPersonName"
                     android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/ettelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="8dp"
-                    android:drawableLeft="@drawable/ic_baseline_call_24"
-                    android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:hint="988282283"
-                    android:inputType="phone"
-                    android:textSize="14sp" />
 
+                <EditText
+                    android:id="@+id/editTextTextPassword4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    android:ems="10"
+                    android:hint="                         Password"
+                    android:inputType="textPassword"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/etcorreo"
@@ -136,6 +131,15 @@
                     android:inputType="textPersonName"
                     android:textSize="14sp" />
 
+                <EditText
+                    android:id="@+id/editTextTextPersonName2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="                    av.Los Heroes"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp" />
+
             </LinearLayout>
 
 
@@ -145,38 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rdbsr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sr." />
-
-            <RadioButton
-                android:id="@+id/rdbsra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sra." />
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/edtmensaje"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:hint="Ingrese un mensaje"
-            android:inputType="textMultiLine" />
-
-        <CheckBox
-            android:id="@+id/cbempresa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Perteneces a una empresa" />
+            android:orientation="horizontal" />
 
         <Button
             android:id="@+id/btnenviar"
@@ -188,6 +161,18 @@
             app:icon="@drawable/ic_baseline_send_24" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Registrarse"
+        android:textColor="#0E0E0E"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="59dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
