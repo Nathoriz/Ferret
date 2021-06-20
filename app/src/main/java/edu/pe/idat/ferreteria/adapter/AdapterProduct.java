@@ -4,60 +4,53 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import edu.pe.idat.ferreteria.R;
-import edu.pe.idat.ferreteria.modelo.ModelProduct;
 
-public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> implements View.OnClickListener {
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
+import edu.pe.idat.ferreteria.databinding.ItemProductBinding;
+import edu.pe.idat.ferreteria.modelo.Producto;
+
+public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>
+//        implements View.OnClickListener
+{
+
      private Context context;
-     private ArrayList<ModelProduct> list;
-     private ArrayList<ModelProduct> shoppingCartList;
+     private ArrayList<Producto> list;
 
      private View.OnClickListener listener;
 
     public AdapterProduct(Context context){
         this.context = context;
         list = new ArrayList<>();
-        shoppingCartList = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public AdapterProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_product,parent,false);
-        view.setOnClickListener(this);
-        return new AdapterProduct.ViewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.item_product,parent,false);
+//        view.setOnClickListener(this);
+//        return new AdapterProduct.ViewHolder(view);
+
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemProductBinding recyclerBinding = ItemProductBinding.inflate(layoutInflater,parent,false);
+        return new ViewHolder(recyclerBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterProduct.ViewHolder holder, int position) {
-        final ModelProduct item = list.get(position);
+        final Producto item = list.get(position);
 
-        holder.name.setText(item.getNombre());
-        holder.brand.setText(item.getMarca());
-        holder.price.setText(String.valueOf(item.getPrecio()));
-        holder.productImage.setImageResource(item.getImagen());
+        holder.recyclerBinding.tvItemNombre.setText(item.getNombre());
+        holder.recyclerBinding.tvItemMarca.setText(item.getMarca());
+        holder.recyclerBinding.tvItemPrecio.setText(String.valueOf(item.getPrecio()));
+        Glide.with(context).load(item.getImagen()).into(holder.recyclerBinding.ivItemImagen);
 
-        holder.addToCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(holder.addToCart.isChecked() == true){
-                    shoppingCartList.add(item);
-                    mensaje("añadio");
-
-                }else if(holder.addToCart.isChecked() == false){
-                    shoppingCartList.remove(item);
-                    mensaje("elimino");
-                }
-            }
-        });
+//        holder.recyclerBinding.cvproduct.setOnClickListener();
     }
 
     @Override
@@ -66,45 +59,34 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     }
 
 
-    public void setOnClickListener(View.OnClickListener listener){
-        this.listener = listener;
-    }
+//    public void setOnClickListener(View.OnClickListener listener){
+//        this.listener = listener;
+//    }
 
 
-    @Override
-    public void onClick(View view) {
-        if(listener!= null){
-            listener.onClick(view);
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if(listener!= null){
+//            listener.onClick(view);
+//        }
+//    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, brand, price;
-        ImageView productImage;
-        CheckBox addToCart;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.txt_cart_nombreproducto);
-            brand =  itemView.findViewById(R.id.txt_cart_marcaproducto);
-            price = itemView.findViewById(R.id.txt_cart_precioproducto);
-            productImage = itemView.findViewById(R.id.iv_cart_imagenproducto);
-            addToCart = itemView.findViewById(R.id.cbaddtocart);
+        ItemProductBinding recyclerBinding;
+        public ViewHolder(@NonNull ItemProductBinding itemView) {
+            super(itemView.getRoot());
+           recyclerBinding=itemView;
         }
     }
 
-    public void addProduct(ArrayList<ModelProduct> data) {
-        list.clear();
+    public void addProduct(ArrayList<Producto> data) {
         list.addAll(data);
         notifyDataSetChanged();
     }
-
-    public ArrayList<ModelProduct> getCartProduct() {
-        return shoppingCartList;
-    }
-
-    private void mensaje(String mensaje){
-        Toast.makeText(context,mensaje,
-                Toast.LENGTH_LONG).show();
-    }
+//
+//    private void mensaje(String mensaje){
+//        Toast.makeText(context,mensaje,
+//                Toast.LENGTH_LONG).show();
+//    }
 }

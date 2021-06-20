@@ -3,19 +3,19 @@ package edu.pe.idat.ferreteria.modelo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ModelProduct implements Parcelable {
+public class Producto implements Parcelable {
     private int id;
     private String nombre;
     private String marca;
     private double precio;
-    private int imagen;
+    private String imagen;
 
 
-    public ModelProduct() {
+    public Producto() {
 
     }
 
-    public ModelProduct(int id, String nombre, String marca, double precio, int imagen) {
+    public Producto(int id, String nombre, String marca, double precio, String imagen) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
@@ -23,23 +23,23 @@ public class ModelProduct implements Parcelable {
         this.imagen = imagen;
     }
 
-    protected ModelProduct(Parcel in) {
+    protected Producto(Parcel in) {
         id = in.readInt();
         nombre = in.readString();
         marca = in.readString();
         precio = in.readDouble();
-        imagen = in.readInt();
+        imagen = in.readString();
     }
 
-    public static final Creator<ModelProduct> CREATOR = new Creator<ModelProduct>() {
+    public static final Creator<Producto> CREATOR = new Creator<Producto>() {
         @Override
-        public ModelProduct createFromParcel(Parcel in) {
-            return new ModelProduct(in);
+        public Producto createFromParcel(Parcel in) {
+            return new Producto(in);
         }
 
         @Override
-        public ModelProduct[] newArray(int size) {
-            return new ModelProduct[size];
+        public Producto[] newArray(int size) {
+            return new Producto[size];
         }
     };
 
@@ -76,11 +76,11 @@ public class ModelProduct implements Parcelable {
         this.precio = precio;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -95,6 +95,6 @@ public class ModelProduct implements Parcelable {
         parcel.writeString(nombre);
         parcel.writeString(marca);
         parcel.writeDouble(precio);
-        parcel.writeInt(imagen);
+        parcel.writeString(imagen);
     }
 }

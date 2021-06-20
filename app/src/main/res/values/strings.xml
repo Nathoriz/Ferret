@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FERRETERIA</string>
     <string name="title_product">Productos</string>
-    <string name="title_shopping_cart">Carrito</string>
+    <string name="title_user">Perfil</string>
     <string name="title_contact_us">Contactanos</string>
     <string name="valtxt_splash_titulo">FERRET</string>
 
@@ -10,4 +10,22 @@
     <string name="valtxt_listproduct_brand">brand</string>
     <string name="valtxt_listproduct_price">price</string>
     <string name="jjj">*********</string>
+    <string name="vbtn_login_ingresar">Iniciar Sesión</string>
+    <string name="vhint_login_email">Ingrese su email</string>
+    <string name="vhint_login_contrasenia">Ingrese su contraseña</string>
+    <string name="vtv_login_crearCuenta">¿No tiene una cuenta?</string>
+    <string name="vbtn_login_crearCuenta">Crear Cuenta</string>
+    <string name="vtv_login_bienvenida">Bienvenido de nuevo</string>
+    <string name="vtv_signup_titulo">Crear Cuenta</string>
+    <string name="hint_signup_nombre">Carlos Enrique</string>
+    <string name="hint_signup_apellido">Romero Ventura</string>
+    <string name="hint_signup_direccion">Urb. Julieta Rosario # 4</string>
+    <string name="hint_signup_email">carlosventura@gmail.com</string>
+    <string name="hint_signup_contrasenia">*********</string>
+    <string name="vtv_signup_nombre">Nombre</string>
+    <string name="vtv_signup_apellido">Apellido</string>
+    <string name="vtv_signup_direccion">Dirección</string>
+    <string name="vtv_signup_email">Email</string>
+    <string name="vtv_signup_contraneia">Contraseña</string>
+    <string name="vbtn_signup_crearcuenta">Registrar</string>
 </resources>

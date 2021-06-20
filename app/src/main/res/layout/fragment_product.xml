@@ -6,28 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProductFragment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="vertical"
-            android:paddingLeft="25dp"
-            android:paddingTop="5dp"
-            android:paddingRight="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-                <Button
-                    android:id="@+id/btncarro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_baseline_add_shopping_cart_24"
-                    app:iconGravity="textTop"
-                    app:iconPadding="3dp" />
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvlistproducts"
             android:layout_width="0dp"
@@ -37,6 +15,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            tools:listitem="@layout/list_product" />
+            app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

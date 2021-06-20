@@ -13,9 +13,9 @@
         android:name="edu.pe.idat.ferreteria.ContactUsFragment"
         tools:layout="@layout/fragment_contact_us" />
     <fragment
-        android:id="@+id/navshoppingcartfrag"
-        android:name="edu.pe.idat.ferreteria.ShoppingCartFragment"
-        tools:layout="@layout/fragment_shopping_cart" />
+        android:id="@+id/navuserfrag"
+        android:name="edu.pe.idat.ferreteria.UserFragment"
+        tools:layout="@layout/fragment_user" />
     <fragment
         android:id="@+id/navproductdetailfrag"
         android:name="edu.pe.idat.ferreteria.ProductDetailFragment"

@@ -4,15 +4,13 @@
     <item
         android:id="@+id/navcontactusfrag"
         android:icon="@drawable/ic_baseline_content_paste_24"
-        android:title="@string/title_contact_us" />
+        android:title="@string/title_contact_us"/>
     <item
         android:id="@+id/navproductfrag"
         android:icon="@drawable/ic_baseline_handyman_24"
-        android:title="@string/title_product" />
-
+        android:title="@string/title_product"/>
     <item
-        android:id="@+id/navshoppingcartfrag"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="@string/title_shopping_cart" />
-
+        android:id="@+id/navuserfrag"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/title_user"/>
 </menu>
