@@ -2,8 +2,12 @@ package edu.pe.idat.ferreteria;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,19 +31,39 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
 
+    public SignUpActivity() {
+    }
+
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.btnCrearcuenta.setOnClickListener(view -> {
-            registrarUsuario(Constantes.URL_API_USUARIO_CREAR);
+
+           if(registrarUsuario(Constantes.URL_API_USUARIO_CREAR)){
+               mostrarAlerta("Registro","Usuario creado exitoso");
+           }
+
         });
+
+
+    }
+    public void mostrarAlerta(String titulo, String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(mensaje)
+                .setTitle(titulo);
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
-    private void registrarUsuario(String urlApiUsuarioCrear) {
+    private boolean registrarUsuario(String urlApiUsuarioCrear) {
         RequestQueue colapeticiones = Volley.newRequestQueue(this);
+        boolean rsp=false;
         binding.btnCrearcuenta.setEnabled(false);
 
         Map<String,String> parametros= new HashMap<>();
@@ -49,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
         parametros.put("email",binding.etSignupEmail.getText().toString());
         parametros.put("nombre",binding.etSignupNombre.getText().toString());
 
-
+          rsp=true;
         JSONObject jsonObjectParametro = new JSONObject(parametros);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
@@ -67,10 +91,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
         colapeticiones.add(request);
+        return rsp;
     }
 
     private void mensaje(String m){
         Toast.makeText(getApplicationContext(),
                 m,Toast.LENGTH_LONG).show();
     }
+
 }
+

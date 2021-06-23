@@ -53,6 +53,9 @@ public class UserFragment extends Fragment {
         binding = FragmentUserBinding.inflate(inflater,container,false);
         cargarDatos(Constantes.URL_API_USUARIO_DETALLE+SharedPreferenceManager.getSomeIntValue(Constantes.PREF_ID));
      return binding.getRoot();
+
+
+
     }
 
     private void cargarDatos(String url) {
