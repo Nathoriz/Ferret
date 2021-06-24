@@ -1,7 +1,7 @@
 package edu.pe.idat.ferreteria.common;
 
 public class Constantes {
-    private static String ipv="192.168.1.3";
+    private static String ipv="192.168.1.6";
     public static final String URL_API_METODO_PAGO_LISTAR="http://"+ipv+":8070/metodopago/listar";
     public static final String URL_API_METODO_PAGO_OBTENER="http://"+ipv+":8070/metodopago/obtener/";
 

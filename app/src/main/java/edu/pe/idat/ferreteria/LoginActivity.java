@@ -2,9 +2,11 @@ package edu.pe.idat.ferreteria;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -19,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import edu.pe.idat.ferreteria.common.Constantes;
 import edu.pe.idat.ferreteria.common.SharedPreferenceManager;
@@ -35,7 +38,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnLogin.setOnClickListener(view -> {
+            if(validacion()){
                 autentificacion();
+                limpiar();
+
+            }
+
         });
 
         binding.btnRcrearcuenta.setOnClickListener(view -> {
@@ -66,7 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferenceManager.setSomeStringValue(Constantes.PREF_NOMBRE,user.getString("nombre"));
                                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             }else {
-                                mensaje(response.getString("Mensaje"));
+                                mensaje("Ups",response.getString("Mensaje"));
+                                binding.btnLogin.setEnabled(true);
                             }
                         } catch (JSONException ex) {
 
@@ -82,8 +91,50 @@ public class LoginActivity extends AppCompatActivity {
         colapeticiones.add(request);
     }
 
-    private void mensaje(String m){
-        Toast.makeText(getApplicationContext(),
-                m,Toast.LENGTH_LONG).show();
+    public boolean validacion(){
+        String msj = "";
+        boolean respuesta = true;
+        if(binding.etLoginEmail.getText().toString().length() == 0 &&binding.etLoginContrasenia.getText().toString().length() == 0){
+            msj = "Ingrese su correo y su cantraseña";
+            respuesta = false;
+            mensaje("Campos vacios", msj);
+        }
+        else if (binding.etLoginEmail.getText().toString().length() == 0) {
+            msj = "Ingrese su correo";
+            respuesta = false;
+            mensaje("Campo vacio", msj);
+        } else if (binding.etLoginEmail.getText().toString().length() > 0) {
+            Pattern pattern = Patterns.EMAIL_ADDRESS;
+            if (pattern.matcher(binding.etLoginEmail.getText().toString()).matches()) {
+                respuesta = true;
+            } else {
+                msj = "Su correo " + binding.etLoginEmail.getText().toString() + " no es valido";
+                respuesta = false;
+                mensaje("Campo invalido", msj);
+            }
+        } else if (binding.etLoginContrasenia.getText().toString().length() == 0) {
+            msj = "Ingrese su nombre";
+            respuesta = false;
+            mensaje("Campo vacio", msj);
+        } else {
+            respuesta = true;
+        }
+        return respuesta;
     }
+
+    public void limpiar(){
+        binding.etLoginContrasenia.setText("");
+        binding.etLoginEmail.setText("");
+    }
+
+    public void mensaje(String titulo, String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(mensaje)
+                .setTitle(titulo);
+
+        AlertDialog alert =builder.create();
+        alert.show();
+    }
+
+
 }

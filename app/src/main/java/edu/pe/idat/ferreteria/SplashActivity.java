@@ -10,7 +10,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        final Intent MainActivityIntent = new Intent(this,MainActivity.class);
+        final Intent LoginActivityIntent = new Intent(this,LoginActivity.class);
         Thread timer = new Thread() {
             @Override
             public void run() {
@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
                     sleep(3500);
                 } catch (InterruptedException ex) {
                 } finally {
-                    startActivity(MainActivityIntent);
+                    startActivity(LoginActivityIntent);
                     finish();
                 }
             }

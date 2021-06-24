@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import edu.pe.idat.ferreteria.common.Constantes;
 import edu.pe.idat.ferreteria.common.SharedPreferenceManager;
@@ -43,22 +45,15 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnCrearcuenta.setOnClickListener(view -> {
-
-           if(registrarUsuario(Constantes.URL_API_USUARIO_CREAR)){
-               mostrarAlerta("Registro","Usuario creado exitoso");
-           }
-
+            if(validacion()){
+                if(registrarUsuario(Constantes.URL_API_USUARIO_CREAR)){
+                    mensaje("Registro","Usuario creado exitoso");
+                    limpiar();
+                }else {
+                    limpiar();
+                }
+            }
         });
-
-
-    }
-    public void mostrarAlerta(String titulo, String mensaje) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(mensaje)
-                .setTitle(titulo);
-
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     private boolean registrarUsuario(String urlApiUsuarioCrear) {
@@ -91,13 +86,74 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
         colapeticiones.add(request);
+        binding.btnCrearcuenta.setEnabled(true);
         return rsp;
     }
 
-    private void mensaje(String m){
-        Toast.makeText(getApplicationContext(),
-                m,Toast.LENGTH_LONG).show();
+    public boolean validacion(){
+        String msj = "";
+        boolean respuesta = true;
+        if(binding.etSignupNombre.getText().toString().length() == 0 &&
+                binding.etSignupApellido.getText().toString().length() == 0 &&
+                binding.etSignupDireccion.getText().toString().length() == 0 &&
+                binding.etSignupEmail.getText().toString().length() == 0 &&
+                binding.etSignupContrasenia.getText().toString().length() == 0){
+            msj = "Ingrese los campos solicitados";
+            respuesta = false;
+            mensaje("Campos vacios", msj);
+
+        }else if(binding.etSignupNombre.getText().toString().length() == 0){
+            msj = "Ingrese su nombre";
+            respuesta = false;
+            mensaje("Campos vacios", msj);
+        }
+        else if(binding.etSignupApellido.getText().toString().length() == 0){
+            msj = "Ingrese su apellido";
+            respuesta = false;
+            mensaje("Campos vacios", msj);
+        }else if(binding.etSignupDireccion.getText().toString().length() == 0){
+            msj = "Ingrese su dirección";
+            respuesta = false;
+            mensaje("Campos vacios", msj);
+        }
+        else if (binding.etSignupEmail.getText().toString().length() == 0) {
+            msj = "Ingrese su correo";
+            respuesta = false;
+            mensaje("Campo vacio", msj);
+        } else if (binding.etSignupEmail.getText().toString().length() > 0) {
+            Pattern pattern = Patterns.EMAIL_ADDRESS;
+            if (pattern.matcher(binding.etSignupEmail.getText().toString()).matches()) {
+                respuesta = true;
+            } else {
+                msj = "Su correo " + binding.etSignupEmail.getText().toString() + " no es valido";
+                respuesta = false;
+                mensaje("Campo invalido", msj);
+            }
+        } else if (binding.etSignupContrasenia.getText().toString().length() == 0) {
+            msj = "Ingrese su nombre";
+            respuesta = false;
+            mensaje("Campo vacio", msj);
+        } else {
+            respuesta = true;
+        }
+        return respuesta;
     }
 
+    public void limpiar(){
+        binding.etSignupNombre.setText("");
+        binding.etSignupApellido.setText("");
+        binding.etSignupDireccion.setText("");
+        binding.etSignupContrasenia.setText("");
+        binding.etSignupEmail.setText("");
+    }
+
+    private void mensaje(String titulo,String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(mensaje)
+                .setTitle(titulo);
+
+        AlertDialog alert =builder.create();
+        alert.show();
+    }
 }
 
